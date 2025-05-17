@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
           <div>
             <div className="text-3xl font-bold mb-4">
             <img
-              src="https://github.com/armandosarabia/maquinadosdazav3/blob/main/img/logodaza-225-81.png?raw=true"
+              src="/img/logodaza-225-81.png"
               alt="DAZA"
               className="h-12 w-auto"
                />
