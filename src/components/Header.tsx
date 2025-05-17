@@ -18,16 +18,6 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const menuItems = [
-    'Inicio',
-    'Servicios',
-    'Proyectos',
-    'Equipamiento',
-    'Misión y Visión',
-    'Nosotros',
-    'Contacto',
-  ];
-
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -39,27 +29,31 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <div className="text-3xl font-bold text-gray-800">
               <img
-                src="/img/logodaza-225-81.png"
-                alt="DAZA"
-                className="h-12 w-auto"
-              />
+              src="/img/logodaza-225-81.png"
+              alt="DAZA"
+              className="h-12 w-auto"
+               />
             </div>
           </div>
 
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {menuItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(/ y /g, '-')}`}
-                className={`font-medium transition-colors hover:text-yellow-500 ${
-                  isScrolled ? 'text-gray-800' : 'text-white'
-                }`}
-              >
-                {item}
-              </a>
-            ))}
+            {['Inicio', 'Servicios', 'Proyectos', 'Equipamiento', 'Nosotros', 'Contacto'].map(
+              (item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className={`font-medium transition-colors hover:text-yellow-500 ${
+                    isScrolled ? 'text-gray-800' : 'text-white'
+                  }`}
+                >
+                  {item}
+                </a>
+              )
+            )}
           </nav>
 
+          {/* CTA Button */}
           <div className="hidden md:block">
             <a
               href="tel:+555536973579"
@@ -70,6 +64,7 @@ const Header: React.FC = () => {
             </a>
           </div>
 
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -83,6 +78,7 @@ const Header: React.FC = () => {
         </div>
       </div>
 
+      {/* Mobile Navigation */}
       <div
         className={`fixed inset-0 z-40 bg-white transform ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
@@ -97,16 +93,18 @@ const Header: React.FC = () => {
           </button>
         </div>
         <nav className="mt-8 px-4">
-          {menuItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase().replace(/ y /g, '-')}`}
-              className="block py-3 text-lg font-medium text-gray-800 border-b border-gray-200 hover:text-yellow-500"
-              onClick={() => setIsOpen(false)}
-            >
-              {item}
-            </a>
-          ))}
+          {['Inicio', 'Servicios', 'Proyectos', 'Equipamiento', 'Nosotros', 'Contacto'].map(
+            (item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="block py-3 text-lg font-medium text-gray-800 border-b border-gray-200 hover:text-yellow-500"
+                onClick={() => setIsOpen(false)}
+              >
+                {item}
+              </a>
+            )
+          )}
           <a
             href="tel:+555536973579"
             className="mt-6 block bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold py-3 px-4 rounded-md text-center transition-colors duration-200"
