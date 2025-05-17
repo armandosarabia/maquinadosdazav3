@@ -29,7 +29,7 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <div className="text-3xl font-bold text-gray-800">
               <img
-              src="/img/logodaza-225-81.png"
+              src="https://maquinadosdaza.com.mx/wp-content/uploads/2024/09/logodaza-225-81.png"
               alt="DAZA"
               className="h-12 w-auto"
                />
