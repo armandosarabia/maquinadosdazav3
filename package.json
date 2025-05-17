@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mailerlite/mailerlite-nodejs": "^1.2.1",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "swiper": "^11.0.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

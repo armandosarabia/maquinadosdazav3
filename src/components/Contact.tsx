@@ -8,25 +8,45 @@ const Contact: React.FC = () => {
     phone: '',
     company: '',
     message: '',
+    newsletter: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target as HTMLInputElement;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
+    }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send this data to your backend
-    console.log('Form submitted:', formData);
-    alert('Gracias por contactarnos. Nos comunicaremos con usted a la brevedad.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      message: '',
-    });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Gracias por contactarnos. Nos comunicaremos con usted a la brevedad.');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          message: '',
+          newsletter: false,
+        });
+      } else {
+        throw new Error('Error al enviar el formulario');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Hubo un error al enviar el formulario. Por favor, intente nuevamente.');
+    }
   };
 
   const contactInfo = [
@@ -38,7 +58,7 @@ const Contact: React.FC = () => {
     {
       icon: <Mail className="w-5 h-5 text-yellow-500" />,
       title: 'Email',
-      details: 'contacto(arroba)maquinadosdaza.com.mx',
+      details: 'contacto@maquinadosdaza.com.mx',
     },
     {
       icon: <MapPin className="w-5 h-5 text-yellow-500" />,
@@ -175,6 +195,21 @@ const Contact: React.FC = () => {
                   rows={5}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-yellow-500 focus:border-yellow-500"
                 ></textarea>
+              </div>
+
+              <div className="mb-6">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="newsletter"
+                    checked={formData.newsletter}
+                    onChange={handleChange}
+                    className="rounded border-gray-300 text-yellow-500 focus:ring-yellow-500"
+                  />
+                  <span className="ml-2 text-sm text-gray-600">
+                    Suscribirme al newsletter para recibir actualizaciones y ofertas
+                  </span>
+                </label>
               </div>
               
               <button
