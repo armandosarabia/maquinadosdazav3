@@ -7,13 +7,15 @@ import Equipment from './components/Equipment';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton';
 import './utils/animations.css';
 
+// Simulate AOS (Animate on Scroll) functionality
 const App: React.FC = () => {
   useEffect(() => {
+    // Update the document title
     document.title = 'Maquinados Industriales DAZA - Precisión en CNC';
     
+    // Mock AOS implementation (in a real project, you'd use AOS or similar library)
     const handleScroll = () => {
       const elements = document.querySelectorAll('[data-aos]');
       elements.forEach(element => {
@@ -27,6 +29,7 @@ const App: React.FC = () => {
     };
     
     window.addEventListener('scroll', handleScroll);
+    // Initial check for elements in view
     setTimeout(handleScroll, 100);
     
     return () => window.removeEventListener('scroll', handleScroll);
@@ -42,7 +45,6 @@ const App: React.FC = () => {
       <About />
       <Contact />
       <Footer />
-      <WhatsAppButton />
     </div>
   );
 };
