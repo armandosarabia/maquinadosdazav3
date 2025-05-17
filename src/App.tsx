@@ -5,8 +5,6 @@ import Services from './components/Services';
 import Projects from './components/Projects';
 import Equipment from './components/Equipment';
 import About from './components/About';
-import MissionVision from './components/MissionVision';
-import Partners from './components/Partners';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
@@ -41,8 +39,6 @@ const App: React.FC = () => {
       <Services />
       <Projects />
       <Equipment />
-      <MissionVision />
-      <Partners />
       <About />
       <Contact />
       <Footer />
